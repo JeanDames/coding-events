@@ -18,13 +18,13 @@
 
         <tbody>
         <tr th:each = "event : ${events.entrySet()}">
-            <td th:text="${event.getKey()}" scope="row"></td>
+            <td th:text="${event.getKey()}" scope="row" class="eventName"></td>
             <td th:text="${event.getValue()}" scope="row"></td>
         </tr>
         </tbody>
     </table>
 </th:block>
 
-
+<footer th:replace="fragments :: address"></footer>
 </body>
 </html>
