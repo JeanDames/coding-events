@@ -8,21 +8,33 @@
 <form method="post">
     <div class="form-group">
         <label>Name
-            <input th:field="${event.name}" class="form-control">
+            <input th:field="${event.name}" class="form-control"/>
         </label>
         <p class="error" th:errors="${event.name}"></p>
     </div>
     <div class="form-group">
         <label>Description
-            <input th:field="${event.description}" class="form-control">
+            <input th:field="${event.description}" class="form-control"/>
         </label>
         <p class="error" th:errors="${event.description}"></p>
     </div>
     <div class="form-group">
         <label>Contact Email
-            <input th:field="${event.contactEmail}" class="form-control">
+            <input th:field="${event.contactEmail}" class="form-control"/>
         </label>
         <p class="error" th:errors="${event.contactEmail}"></p>
+    </div>
+    <div class="form-group">
+        <label>Location
+            <input type = "text" th:field="${event.location}" class="form-control"/>
+        </label>
+        <p class="error" th:errors="${event.location}"></p>
+    </div>
+    <div class="form-group">
+        <label>Total Attendees
+            <input th:field="${event.totalAttendees}" class="form-control"/>
+        </label>
+        <p class="error" th:errors="${event.totalAttendees}"></p>
     </div>
     <div class="form-group">
         <input type="submit" value="Create" class="btn btn-success">
