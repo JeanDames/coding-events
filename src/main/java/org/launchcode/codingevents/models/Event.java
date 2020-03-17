@@ -79,6 +79,14 @@ public class Event {
         this.location = location;
     }
 
+    public boolean isRegistrationRequired() {
+        return registrationRequired;
+    }
+
+    public void setRegistrationRequired(boolean registrationRequired) {
+        this.registrationRequired = registrationRequired;
+    }
+
     public int getTotalAttendees() {
         return totalAttendees;
     }
