@@ -26,9 +26,6 @@ public class Event {
     @NotBlank(message = "Location must not be blank")
     private String location;
 
-    @AssertTrue(message = "Box must be checked")
-    private boolean registrationRequired;
-
     @Min(1)
     private int totalAttendees;
 
@@ -40,7 +37,6 @@ public class Event {
         this.description = description;
         this.contactEmail = contactEmail;
         this.location = location;
-        this.registrationRequired = registrationRequired;
         this.totalAttendees = totalAttendees;
         this.type = type;
     }
@@ -80,14 +76,6 @@ public class Event {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public boolean isRegistrationRequired() {
-        return registrationRequired;
-    }
-
-    public void setRegistrationRequired(boolean registrationRequired) {
-        this.registrationRequired = registrationRequired;
     }
 
     public int getTotalAttendees() {
