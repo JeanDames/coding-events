@@ -32,7 +32,9 @@ public class Event {
     @Min(1)
     private int totalAttendees;
 
-    public Event(String name, String description, String contactEmail, String location, boolean registrationRequired, int totalAttendees) {
+    private EventType type;
+
+    public Event(String name, String description, String contactEmail, String location, boolean registrationRequired, int totalAttendees, EventType type) {
         this();
         this.name = name;
         this.description = description;
@@ -40,6 +42,7 @@ public class Event {
         this.location = location;
         this.registrationRequired = registrationRequired;
         this.totalAttendees = totalAttendees;
+        this.type = type;
     }
 
     public Event() {
@@ -93,6 +96,14 @@ public class Event {
 
     public void setTotalAttendees(int totalAttendees) {
         this.totalAttendees = totalAttendees;
+    }
+
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
     }
 
     public int getId() {
