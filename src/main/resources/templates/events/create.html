@@ -31,11 +31,18 @@
         <p class="error" th:errors="${event.location}"></p>
     </div>
     <div class="form-group">
+        <label>Check to register
+            <input type = "checkbox" th:field="${event.registrationRequired}" class="form-control"/>
+        </label>
+        <p class="error" th:errors="${event.registrationRequired}"></p>
+    </div>
+    <div class="form-group">
         <label>Total Attendees
             <input th:field="${event.totalAttendees}" class="form-control"/>
         </label>
         <p class="error" th:errors="${event.totalAttendees}"></p>
     </div>
+    // TODO-does not populate after failed attempt
     <div class="form-group">
         <label>Type
         <select th:field="${event.type}">
