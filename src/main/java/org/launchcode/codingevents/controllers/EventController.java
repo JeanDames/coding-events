@@ -2,8 +2,10 @@ package org.launchcode.codingevents.controllers;
 
 import org.launchcode.codingevents.data.EventCategoryRepository;
 import org.launchcode.codingevents.data.EventRepository;
+import org.launchcode.codingevents.data.TagRepository;
 import org.launchcode.codingevents.models.Event;
 import org.launchcode.codingevents.models.EventCategory;
+import org.launchcode.codingevents.models.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,18 +28,30 @@ public class EventController {
     @Autowired
     private EventCategoryRepository eventCategoryRepository;
 
-    @GetMapping
-    public String displayEvents(@RequestParam(required = false) Integer categoryId, Model model) {
+    @Autowired
+    private TagRepository tagRepository;
 
-        if (categoryId == null) {
+    @GetMapping
+    public String displayEvents(@RequestParam(required = false) Integer categoryId,
+                                @RequestParam(required = false) Integer tagId,
+                                Model model) {
+
+        if (categoryId == null && tagId == null) {
             model.addAttribute("title", "All Events");
             model.addAttribute("events", eventRepository.findAll());
         } else {
-            Optional<EventCategory> result = eventCategoryRepository.findById(categoryId);
-            if (result.isEmpty()) {
-                model.addAttribute("title", "Invalid Category ID: " + categoryId);
+            Optional<EventCategory> categoryResult = eventCategoryRepository.findById(categoryId);
+            Optional<Tag> tagResult = tagRepository.findById(tagId);
+            if (categoryResult.isEmpty() && tagResult.isEmpty()) {
+                model.addAttribute("title", "Invalid Category ID: " + categoryId +
+                                                                        "\nInvalid Tag ID: " + tagId);
+            } else if(categoryResult.isEmpty() && !tagResult.isEmpty()) {
+                Tag tag = tagResult.get();
+                EventCategory category = categoryResult.get();
+                model.addAttribute("title", "Events with tag: " + tag.getDisplayName());
+                model.addAttribute("events", category.getEvents());
             } else {
-                EventCategory category = result.get();
+                EventCategory category = categoryResult.get();
                 model.addAttribute("title", "Events in category: " + category.getName());
                 model.addAttribute("events", category.getEvents());
             }
